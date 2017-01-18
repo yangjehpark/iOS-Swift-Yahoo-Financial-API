@@ -2,7 +2,8 @@ platform :ios, '8.0'
 use_frameworks!
 
 def shared_pods
-
+    pod 'Alamofire'
+    pod 'AlamofireObjectMapper', '~> 2.1'
 end
 
 target 'YahooFinance' do
