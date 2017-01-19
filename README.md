@@ -1,4 +1,3 @@
-
 A sample iOS application for searching symbol and querying financial quote by using Yahoo API, Alamofire and ObjectMapper.
 
 ![Demo](https://github.com/yangjehpark/iOS-Swift-Yahoo-Financial-API/blob/master/iOS-Swift-Yahoo-Financial-API.gif)
@@ -19,7 +18,10 @@ A sample iOS application for searching symbol and querying financial quote by us
 - If you **found a bug** or **have a feature request**, please open an issue.
 - If you **want to contribute**, submit a pull request.
 
-
 ## Usage
 
 After git clone or zip download, open 'YahooFinance.xcworkspace' and start build & run.
+
+## License
+
+My codes are under the Beerware license. 
