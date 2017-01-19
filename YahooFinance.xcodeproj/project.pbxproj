@@ -9,10 +9,26 @@
 /* Begin PBXBuildFile section */
 		923268689A7497677A0306FD /* Pods_YahooFinance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D1A858D35E63140CEDF0D2 /* Pods_YahooFinance.framework */; };
 		C376591F1E2F511700672956 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C376591E1E2F511700672956 /* AppDelegate.swift */; };
-		C37659211E2F511700672956 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659201E2F511700672956 /* ViewController.swift */; };
+		C37659211E2F511700672956 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659201E2F511700672956 /* SearchViewController.swift */; };
 		C37659241E2F511700672956 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C37659221E2F511700672956 /* Main.storyboard */; };
 		C37659261E2F511700672956 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C37659251E2F511700672956 /* Assets.xcassets */; };
 		C37659291E2F511700672956 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C37659271E2F511700672956 /* LaunchScreen.storyboard */; };
+		C37659311E2F5BD800672956 /* SymbolTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659301E2F5BD800672956 /* SymbolTableViewController.swift */; };
+		C37659331E2F5BF900672956 /* QuoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659321E2F5BF900672956 /* QuoteTableViewController.swift */; };
+		C37659361E2F5D5800672956 /* YahooFinanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659351E2F5D5800672956 /* YahooFinanceViewController.swift */; };
+		C37659441E2F66C000672956 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = C376593D1E2F66C000672956 /* Quote.swift */; };
+		C37659451E2F66C000672956 /* QuoteJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C376593E1E2F66C000672956 /* QuoteJSON.swift */; };
+		C37659461E2F66C000672956 /* QuoteQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C376593F1E2F66C000672956 /* QuoteQuery.swift */; };
+		C37659471E2F66C000672956 /* QuoteResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659401E2F66C000672956 /* QuoteResult.swift */; };
+		C37659481E2F66C000672956 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659411E2F66C000672956 /* Result.swift */; };
+		C37659491E2F66C000672956 /* ResultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659421E2F66C000672956 /* ResultSet.swift */; };
+		C376594A1E2F66C000672956 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659431E2F66C000672956 /* SearchResult.swift */; };
+		C376594E1E2F671400672956 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = C376594D1E2F671400672956 /* Error.swift */; };
+		C37659531E2F699600672956 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659501E2F699600672956 /* Parser.swift */; };
+		C37659541E2F699600672956 /* QueryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659511E2F699600672956 /* QueryParser.swift */; };
+		C37659551E2F699600672956 /* SearchParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659521E2F699600672956 /* SearchParser.swift */; };
+		C37659571E2F6A3900672956 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659561E2F6A3900672956 /* Reachability.swift */; };
+		C37659591E2F6A5C00672956 /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659581E2F6A5C00672956 /* Popup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,11 +36,27 @@
 		7A72D84AACE648DCFFD7E93C /* Pods-YahooFinance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YahooFinance.release.xcconfig"; path = "Pods/Target Support Files/Pods-YahooFinance/Pods-YahooFinance.release.xcconfig"; sourceTree = "<group>"; };
 		C376591B1E2F511600672956 /* YahooFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YahooFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C376591E1E2F511700672956 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C37659201E2F511700672956 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C37659201E2F511700672956 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C37659231E2F511700672956 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C37659251E2F511700672956 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C37659281E2F511700672956 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C376592A1E2F511700672956 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C37659301E2F5BD800672956 /* SymbolTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymbolTableViewController.swift; sourceTree = "<group>"; };
+		C37659321E2F5BF900672956 /* QuoteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteTableViewController.swift; sourceTree = "<group>"; };
+		C37659351E2F5D5800672956 /* YahooFinanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YahooFinanceViewController.swift; sourceTree = "<group>"; };
+		C376593D1E2F66C000672956 /* Quote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Quote.swift; path = Models/Quote.swift; sourceTree = "<group>"; };
+		C376593E1E2F66C000672956 /* QuoteJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuoteJSON.swift; path = Models/QuoteJSON.swift; sourceTree = "<group>"; };
+		C376593F1E2F66C000672956 /* QuoteQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuoteQuery.swift; path = Models/QuoteQuery.swift; sourceTree = "<group>"; };
+		C37659401E2F66C000672956 /* QuoteResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuoteResult.swift; path = Models/QuoteResult.swift; sourceTree = "<group>"; };
+		C37659411E2F66C000672956 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Models/Result.swift; sourceTree = "<group>"; };
+		C37659421E2F66C000672956 /* ResultSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultSet.swift; path = Models/ResultSet.swift; sourceTree = "<group>"; };
+		C37659431E2F66C000672956 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResult.swift; path = Models/SearchResult.swift; sourceTree = "<group>"; };
+		C376594D1E2F671400672956 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Models/Error.swift; sourceTree = "<group>"; };
+		C37659501E2F699600672956 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = Parsers/Parser.swift; sourceTree = "<group>"; };
+		C37659511E2F699600672956 /* QueryParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QueryParser.swift; path = Parsers/QueryParser.swift; sourceTree = "<group>"; };
+		C37659521E2F699600672956 /* SearchParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchParser.swift; path = Parsers/SearchParser.swift; sourceTree = "<group>"; };
+		C37659561E2F6A3900672956 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		C37659581E2F6A5C00672956 /* Popup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		E2D1A858D35E63140CEDF0D2 /* Pods_YahooFinance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YahooFinance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -69,14 +101,86 @@
 		C376591D1E2F511700672956 /* YahooFinance */ = {
 			isa = PBXGroup;
 			children = (
-				C376591E1E2F511700672956 /* AppDelegate.swift */,
-				C37659201E2F511700672956 /* ViewController.swift */,
 				C37659221E2F511700672956 /* Main.storyboard */,
-				C37659251E2F511700672956 /* Assets.xcassets */,
-				C37659271E2F511700672956 /* LaunchScreen.storyboard */,
-				C376592A1E2F511700672956 /* Info.plist */,
+				C3E1E7B51E3055AA00F5F6E3 /* Basics */,
+				C37659201E2F511700672956 /* SearchViewController.swift */,
+				C37659301E2F5BD800672956 /* SymbolTableViewController.swift */,
+				C37659321E2F5BF900672956 /* QuoteTableViewController.swift */,
+				C376594F1E2F690000672956 /* Parsers */,
+				C37659371E2F659900672956 /* Models */,
+				C37659341E2F5CD200672956 /* Supporting Files */,
 			);
 			path = YahooFinance;
+			sourceTree = "<group>";
+		};
+		C37659341E2F5CD200672956 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C37659251E2F511700672956 /* Assets.xcassets */,
+				C37659271E2F511700672956 /* LaunchScreen.storyboard */,
+				C37659561E2F6A3900672956 /* Reachability.swift */,
+				C37659581E2F6A5C00672956 /* Popup.swift */,
+				C376592A1E2F511700672956 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C37659371E2F659900672956 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C376594C1E2F670C00672956 /* Common */,
+				C376594B1E2F66CF00672956 /* Quote */,
+				C37659381E2F65ED00672956 /* Search */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		C37659381E2F65ED00672956 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				C37659411E2F66C000672956 /* Result.swift */,
+				C37659421E2F66C000672956 /* ResultSet.swift */,
+				C37659431E2F66C000672956 /* SearchResult.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		C376594B1E2F66CF00672956 /* Quote */ = {
+			isa = PBXGroup;
+			children = (
+				C376593D1E2F66C000672956 /* Quote.swift */,
+				C376593E1E2F66C000672956 /* QuoteJSON.swift */,
+				C376593F1E2F66C000672956 /* QuoteQuery.swift */,
+				C37659401E2F66C000672956 /* QuoteResult.swift */,
+			);
+			name = Quote;
+			sourceTree = "<group>";
+		};
+		C376594C1E2F670C00672956 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C376594D1E2F671400672956 /* Error.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		C376594F1E2F690000672956 /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				C37659501E2F699600672956 /* Parser.swift */,
+				C37659511E2F699600672956 /* QueryParser.swift */,
+				C37659521E2F699600672956 /* SearchParser.swift */,
+			);
+			name = Parsers;
+			sourceTree = "<group>";
+		};
+		C3E1E7B51E3055AA00F5F6E3 /* Basics */ = {
+			isa = PBXGroup;
+			children = (
+				C376591E1E2F511700672956 /* AppDelegate.swift */,
+				C37659351E2F5D5800672956 /* YahooFinanceViewController.swift */,
+			);
+			name = Basics;
 			sourceTree = "<group>";
 		};
 		EFCC06B4AF6376A8B25B801C /* Pods */ = {
@@ -210,8 +314,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C37659211E2F511700672956 /* ViewController.swift in Sources */,
+				C37659591E2F6A5C00672956 /* Popup.swift in Sources */,
+				C37659551E2F699600672956 /* SearchParser.swift in Sources */,
+				C37659311E2F5BD800672956 /* SymbolTableViewController.swift in Sources */,
+				C37659361E2F5D5800672956 /* YahooFinanceViewController.swift in Sources */,
+				C37659211E2F511700672956 /* SearchViewController.swift in Sources */,
+				C376594E1E2F671400672956 /* Error.swift in Sources */,
+				C37659491E2F66C000672956 /* ResultSet.swift in Sources */,
+				C37659571E2F6A3900672956 /* Reachability.swift in Sources */,
+				C37659541E2F699600672956 /* QueryParser.swift in Sources */,
+				C37659331E2F5BF900672956 /* QuoteTableViewController.swift in Sources */,
+				C37659531E2F699600672956 /* Parser.swift in Sources */,
+				C37659471E2F66C000672956 /* QuoteResult.swift in Sources */,
+				C37659441E2F66C000672956 /* Quote.swift in Sources */,
+				C37659481E2F66C000672956 /* Result.swift in Sources */,
 				C376591F1E2F511700672956 /* AppDelegate.swift in Sources */,
+				C37659451E2F66C000672956 /* QuoteJSON.swift in Sources */,
+				C376594A1E2F66C000672956 /* SearchResult.swift in Sources */,
+				C37659461E2F66C000672956 /* QuoteQuery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +485,7 @@
 				C376592F1E2F511700672956 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

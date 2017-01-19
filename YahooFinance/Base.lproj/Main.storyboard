@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8Eq-1m-7fv">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" id="BYZ-38-t0r" customClass="SearchViewController" customModule="YahooFinance" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,178 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="qGg-db-7ge">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="tiV-Ps-NkA"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qGg-db-7ge" secondAttribute="trailing" id="1IW-CK-pjY"/>
+                            <constraint firstItem="qGg-db-7ge" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MT8-aN-Nit"/>
+                            <constraint firstItem="qGg-db-7ge" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="vPa-ux-syo"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="kOg-4J-5wY"/>
+                    <connections>
+                        <outlet property="searchBar" destination="qGg-db-7ge" id="3Zs-cc-g2W"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="598" y="1121"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="ubh-za-Qg4">
+            <objects>
+                <tableViewController storyboardIdentifier="SymbolTableViewController" id="ahD-ba-oUx" customClass="SymbolTableViewController" customModule="YahooFinance" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="CjX-v0-MzO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SymbolTableViewCellReuseIdentifier" rowHeight="60" id="IHN-cx-ukc" customClass="SymbolTableViewCell" customModule="YahooFinance" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IHN-cx-ukc" id="O78-2p-9vm">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjW-b5-eBw">
+                                            <rect key="frame" x="20" y="10" width="565" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="symbol" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6b-sN-37J">
+                                            <rect key="frame" x="20" y="29" width="565" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="fjW-b5-eBw" secondAttribute="trailing" constant="15" id="5ch-WX-EJF"/>
+                                        <constraint firstAttribute="bottom" secondItem="fjW-b5-eBw" secondAttribute="bottom" constant="10" id="AJY-VB-7cl"/>
+                                        <constraint firstAttribute="bottom" secondItem="I6b-sN-37J" secondAttribute="bottom" constant="10" id="HxB-DH-Y3j"/>
+                                        <constraint firstItem="fjW-b5-eBw" firstAttribute="top" secondItem="O78-2p-9vm" secondAttribute="top" constant="10" id="Xdh-R6-m8e"/>
+                                        <constraint firstAttribute="trailing" secondItem="I6b-sN-37J" secondAttribute="trailing" constant="15" id="ef1-Me-jij"/>
+                                        <constraint firstItem="fjW-b5-eBw" firstAttribute="leading" secondItem="O78-2p-9vm" secondAttribute="leading" constant="20" id="l9v-Pg-pbO"/>
+                                        <constraint firstItem="I6b-sN-37J" firstAttribute="leading" secondItem="O78-2p-9vm" secondAttribute="leading" constant="20" id="npu-He-ADV"/>
+                                        <constraint firstItem="I6b-sN-37J" firstAttribute="top" secondItem="O78-2p-9vm" secondAttribute="top" constant="10" id="rmq-JY-hU4"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="AJY-VB-7cl"/>
+                                            <exclude reference="rmq-JY-hU4"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="fjW-b5-eBw" id="eCT-bd-SFX"/>
+                                    <outlet property="symbolLabel" destination="I6b-sN-37J" id="4HF-Kr-KJu"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ahD-ba-oUx" id="7J9-Hu-Xs3"/>
+                            <outlet property="delegate" destination="ahD-ba-oUx" id="QK3-kz-Yss"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="b8G-Hc-eZR"/>
+                    <connections>
+                        <outlet property="symbolTableView" destination="CjX-v0-MzO" id="Fdm-ho-HaX"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qPA-sg-ZxE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1322" y="1121"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dHO-O9-wJ7">
+            <objects>
+                <navigationController id="8Eq-1m-7fv" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="esc-VJ-KxQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="K50-Nb-6tw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BRd-3g-SqI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-116" y="1121"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="790-kF-WSk">
+            <objects>
+                <tableViewController storyboardIdentifier="QuoteTableViewController" id="Wm9-xU-Cwb" customClass="QuoteTableViewController" customModule="YahooFinance" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cgR-fF-DE7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuoteTableViewCellReuseIdentifier" rowHeight="60" id="ufZ-2r-iow" customClass="QuoteTableViewCell" customModule="YahooFinance" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ufZ-2r-iow" id="RkC-Od-DBI">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0C-jT-w7W">
+                                            <rect key="frame" x="20" y="31.5" width="565" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="key" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSi-iW-aA6">
+                                            <rect key="frame" x="20" y="10" width="565" height="18"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="FSi-iW-aA6" secondAttribute="bottom" constant="10" id="A9O-H2-Ju5"/>
+                                        <constraint firstItem="FSi-iW-aA6" firstAttribute="leading" secondItem="RkC-Od-DBI" secondAttribute="leading" constant="20" id="C1j-3j-PeP"/>
+                                        <constraint firstAttribute="trailing" secondItem="b0C-jT-w7W" secondAttribute="trailing" constant="15" id="JlG-m9-oSS"/>
+                                        <constraint firstAttribute="bottom" secondItem="b0C-jT-w7W" secondAttribute="bottom" constant="10" id="LVt-zx-R5n"/>
+                                        <constraint firstItem="b0C-jT-w7W" firstAttribute="top" secondItem="RkC-Od-DBI" secondAttribute="top" constant="10" id="OV5-yq-GqG"/>
+                                        <constraint firstItem="b0C-jT-w7W" firstAttribute="leading" secondItem="RkC-Od-DBI" secondAttribute="leading" constant="20" id="vvF-Qv-Skd"/>
+                                        <constraint firstAttribute="trailing" secondItem="FSi-iW-aA6" secondAttribute="trailing" constant="15" id="xml-Rr-aVa"/>
+                                        <constraint firstItem="FSi-iW-aA6" firstAttribute="top" secondItem="RkC-Od-DBI" secondAttribute="top" constant="10" id="ybg-y9-Med"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="A9O-H2-Ju5"/>
+                                            <exclude reference="OV5-yq-GqG"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="keyLabel" destination="FSi-iW-aA6" id="T1t-4S-LMq"/>
+                                    <outlet property="valueLabel" destination="b0C-jT-w7W" id="Z2A-j4-TTk"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Wm9-xU-Cwb" id="D75-Ik-Zi8"/>
+                            <outlet property="delegate" destination="Wm9-xU-Cwb" id="0iL-2U-IqC"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="8Wx-ex-Y3X"/>
+                    <connections>
+                        <outlet property="quoteTableView" destination="cgR-fF-DE7" id="Rs6-rO-3Mo"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1YH-tX-ppW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2040" y="1121"/>
         </scene>
     </scenes>
 </document>
