@@ -18,9 +18,21 @@ A sample iOS application for searching symbol and querying financial quote by us
 - If you **found a bug** or **have a feature request**, please open an issue.
 - If you **want to contribute**, submit a pull request.
 
+## Install
+
+Of course, [CocoaPods](http://cocoapods.org) is necessary. This is a dependency manager for Cocoa projects.
+
+At the directory where 'podfile' is, please run the following command in the folder:
+
+```bash
+$ pod install
+```
+
+This is a nessacery course. If you don't, some build error would be occured. 
+
 ## Usage
 
-After git clone or zip download, open 'YahooFinance.xcworkspace' and start build & run.
+After installation, open 'YahooFinance.xcworkspace' and start build & run.
 
 ## License
 
