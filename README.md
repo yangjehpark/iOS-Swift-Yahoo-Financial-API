@@ -18,7 +18,7 @@ A sample iOS application for searching symbol and querying financial quote by us
 - If you **found a bug** or **have a feature request**, please open an issue.
 - If you **want to contribute**, submit a pull request.
 
-## Install
+## Installation
 
 Of course, [CocoaPods](http://cocoapods.org) is necessary. This is a dependency manager for Cocoa projects.
 
