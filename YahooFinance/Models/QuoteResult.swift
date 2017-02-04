@@ -9,9 +9,9 @@
 import Foundation
 import ObjectMapper
 
-class QuoteResult: Mappable {
+struct QuoteResult: Mappable {
     
-    required init?(_ map: Map){
+    init?(map: Map){
         
     }
     
@@ -19,7 +19,7 @@ class QuoteResult: Mappable {
         
     }
     
-    func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         self.quotes <- map["quote"]
         self.quote <- map["quote"]
     }

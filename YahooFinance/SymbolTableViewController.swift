@@ -22,32 +22,32 @@ class SymbolTableViewController: YahooFinanceViewController, UITableViewDelegate
         self.symbolTableView.dataSource = self
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.results.count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return SymbolTableViewCell.expectedHeight
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(SymbolTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! SymbolTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SymbolTableViewCell.reuseIdentifier, for: indexPath) as! SymbolTableViewCell
         cell.nameLabel.text = self.results[indexPath.row].name
         cell.symbolLabel.text = self.results[indexPath.row].symbol
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let symbol = self.results[indexPath.row].symbol {
             self.queryQuote(symbol)
         }
     }
     
-    func queryQuote(symbol:String) {
+    func queryQuote(_ symbol:String) {
         self.showLoadingView()
         // Actually, You can put multiple symbols to query to each quotes at once.
         // But in this flow, just only one symbol is adjusted.
@@ -63,8 +63,8 @@ class SymbolTableViewController: YahooFinanceViewController, UITableViewDelegate
         }
     }
     
-    func pushToQuoteTableViewController(quotes:[Quote]) {
-        let quoteTableViewController = self.mainStoryboard.instantiateViewControllerWithIdentifier(QuoteTableViewController.identifier) as! QuoteTableViewController
+    func pushToQuoteTableViewController(_ quotes:[Quote]) {
+        let quoteTableViewController = self.mainStoryboard.instantiateViewController(withIdentifier: QuoteTableViewController.identifier) as! QuoteTableViewController
         quoteTableViewController.quotes = quotes
         self.navigationController?.pushViewController(quoteTableViewController, animated: true)
     }

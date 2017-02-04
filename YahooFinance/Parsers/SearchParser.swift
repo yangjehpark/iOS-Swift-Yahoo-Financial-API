@@ -11,11 +11,11 @@ import Alamofire
 
 class SearchParser {
     
-    class func getSymbols(searchString: String, completionHandler: (searchResults: [Result]?, error: NSError?) -> Void)  {
+    class func getSymbols(_ searchString: String, completionHandler: @escaping (_ searchResults: [Result]?, _ error: NSError?) -> Void)  {
         
         var queryString = searchString
         
-        if let encoded = searchString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet()) {
+        if let encoded = searchString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed) {
             queryString = encoded
         }
         
@@ -23,12 +23,12 @@ class SearchParser {
         
         let urlString = "https://s.yimg.com/aq/autoc?query=\(queryString)&region=US&lang=en-US"
 
-        Parser.requestAndResponseObject(Method.GET, urlString: urlString, responseObjectType: responseObjectType) { (responseObject, error) in
+        Parser.requestAndResponseObject(HTTPMethod.get, urlString: urlString, responseObjectType: responseObjectType) { (responseObject, error) in
             
             if (responseObject?.resultSet?.results != nil) {
-                completionHandler(searchResults: responseObject!.resultSet!.results!, error: nil)
+                completionHandler(responseObject!.resultSet!.results!, nil)
             } else {
-                completionHandler(searchResults: nil, error: error)
+                completionHandler(nil, error)
             }
         }
     }

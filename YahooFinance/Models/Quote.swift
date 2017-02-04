@@ -9,9 +9,9 @@
 import Foundation
 import ObjectMapper
 
-class Quote: Mappable {
+struct Quote: Mappable {
     
-    required init?(_ map: Map){
+    init?(map: Map){
         
     }
     
@@ -102,7 +102,7 @@ class Quote: Mappable {
     var percentChange: String?
     var currency: String?
     
-    func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         self.symbol <- map["Symbol"]
         self.ask <- map["Ask"]
         self.averageDailyVolume <- map["AverageDailyVolume"]

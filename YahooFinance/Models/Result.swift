@@ -9,9 +9,9 @@
 import Foundation
 import ObjectMapper
 
-class Result: Mappable {
+struct Result: Mappable {
     
-    required init?(_ map: Map){
+    init?(map: Map){
         
     }
     
@@ -26,7 +26,7 @@ class Result: Mappable {
     var exch: String?
     var type: String?
     
-    func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         self.symbol <- map["symbol"]
         self.name <- map["name"]
         self.exch <- map["exch"]

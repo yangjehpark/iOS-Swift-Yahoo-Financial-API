@@ -11,7 +11,7 @@ import Alamofire
 
 class QueryParser {
     
-    class func query(symbolTray:[String]?, completionHandler: (quotes:[Quote]?, error:NSError?) -> Void) {
+    class func query(_ symbolTray:[String]?, completionHandler: @escaping (_ quotes:[Quote]?, _ error:NSError?) -> Void) {
         
         if let symbolsString = QueryParser.symbolTrayToQueryString(symbolTray) {
             
@@ -20,19 +20,19 @@ class QueryParser {
             
             let responseObjectType = QuoteJSON()
             
-            Parser.requestAndResponseObject(Method.GET, urlString: urlString, parameters: nil, encoding: ParameterEncoding.JSON, headers: nil, responseObjectType: responseObjectType) { (responseObject, error) in
+            Parser.requestAndResponseObject(HTTPMethod.get, urlString: urlString, parameters: nil, encoding: URLEncoding.queryString, headers: nil, responseObjectType: responseObjectType) { (responseObject, error) in
                 if (responseObject?.query?.results?.quotes != nil) {
-                    completionHandler(quotes: responseObject!.query!.results!.quotes!, error: nil)
+                    completionHandler(responseObject!.query!.results!.quotes!, nil)
                 } else {
-                    completionHandler(quotes: nil, error: error)
+                    completionHandler(nil, error)
                 }
             }
         } else {
-            completionHandler(quotes: nil, error: nil)
+            completionHandler(nil, nil)
         }
     }
     
-    class private func symbolTrayToQueryString(tray: [String]?) -> String? {
+    class fileprivate func symbolTrayToQueryString(_ tray: [String]?) -> String? {
         
         var symbolsString = ""
         

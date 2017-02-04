@@ -9,9 +9,9 @@
 import Foundation
 import ObjectMapper
 
-class QuoteJSON: Mappable {
+struct QuoteJSON: Mappable {
     
-    required init?(_ map: Map){
+    init?(map: Map){
         
     }
     
@@ -19,7 +19,7 @@ class QuoteJSON: Mappable {
         
     }
     
-    func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         self.query <- map["query"]
         self.error <- map["error"]
     }

@@ -9,9 +9,9 @@
 import Foundation
 import ObjectMapper
 
-class Error: Mappable {
+struct Error: Mappable {
     
-    required init?(_ map: Map){
+    init?(map: Map){
         
     }
     
@@ -19,7 +19,7 @@ class Error: Mappable {
         
     }
     
-    func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         self.lang <- map["lang"]
         self.description <- map["description"]
         self.message <- map["message"]

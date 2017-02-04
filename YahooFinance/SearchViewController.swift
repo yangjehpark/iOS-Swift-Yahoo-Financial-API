@@ -21,20 +21,20 @@ class SearchViewController: YahooFinanceViewController, UISearchBarDelegate {
         self.searchBar.placeholder = "Any company name here."
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.searchBar.becomeFirstResponder()
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.resignFirstResponder()
         
-        if let searchBarText = searchBar.text where searchBarText != "" {
+        if let searchBarText = searchBar.text, searchBarText != "" {
             self.searchSymbols(searchBarText)
         }
     }
     
-    func searchSymbols(inputString: String) {
+    func searchSymbols(_ inputString: String) {
         self.showLoadingView()
         SearchParser.getSymbols(inputString) { (searchResults, error) in
             self.hideLoadingView()
@@ -56,8 +56,8 @@ class SearchViewController: YahooFinanceViewController, UISearchBarDelegate {
         }
     }
     
-    func pushToSymbolTableViewController(searchResults:[Result]) {
-        let symbolTableViewController = self.mainStoryboard.instantiateViewControllerWithIdentifier(SymbolTableViewController.identifier) as! SymbolTableViewController
+    func pushToSymbolTableViewController(_ searchResults:[Result]) {
+        let symbolTableViewController = self.mainStoryboard.instantiateViewController(withIdentifier: SymbolTableViewController.identifier) as! SymbolTableViewController
         symbolTableViewController.results = searchResults
         self.navigationController?.pushViewController(symbolTableViewController, animated: true)
     }

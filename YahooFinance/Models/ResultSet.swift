@@ -9,9 +9,9 @@
 import Foundation
 import ObjectMapper
 
-class ResultSet: Mappable {
+struct ResultSet: Mappable {
     
-    required init?(_ map: Map){
+    init?(map: Map){
         
     }
     
@@ -19,7 +19,7 @@ class ResultSet: Mappable {
         
     }
     
-    func mapping(map: Map) {
+    mutating func mapping(map: Map) {
         self.query <- map["Query"]
         self.results <- map["Result"]
     }

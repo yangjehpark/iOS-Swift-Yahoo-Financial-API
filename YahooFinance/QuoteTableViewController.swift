@@ -25,21 +25,21 @@ class QuoteTableViewController: YahooFinanceViewController, UITableViewDelegate,
         self.quoteTableView.allowsSelection = false
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.quotes[fixedIndex].toJSON().count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return QuoteTableViewCell.expectedHeight
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(QuoteTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! QuoteTableViewCell
-        cell.valueLabel.text = String(Array(self.quotes[fixedIndex].toJSON().values)[indexPath.row])
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: QuoteTableViewCell.reuseIdentifier, for: indexPath) as! QuoteTableViewCell
+        cell.valueLabel.text = String(describing: Array(self.quotes[fixedIndex].toJSON().values)[indexPath.row])
         cell.keyLabel.text = Array(self.quotes[fixedIndex].toJSON().keys)[indexPath.row]
         return cell
     }

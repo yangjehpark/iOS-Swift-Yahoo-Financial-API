@@ -20,15 +20,15 @@ class YahooFinanceViewController: UIViewController {
     }
     
     func initLoadingView() {
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
         activityIndicatorView.startAnimating()
-        activityIndicatorView.center = CGPointMake(UIScreen.mainScreen().bounds.width/2, UIScreen.mainScreen().bounds.height/2)
+        activityIndicatorView.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
         
-        self.loadingView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
-        self.loadingView!.backgroundColor = UIColor.grayColor()
+        self.loadingView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        self.loadingView!.backgroundColor = UIColor.gray
         self.loadingView!.alpha = 0.5
         self.loadingView!.addSubview(activityIndicatorView)
-        self.loadingView!.userInteractionEnabled = false
+        self.loadingView!.isUserInteractionEnabled = false
     }
     
     func showLoadingView() {
@@ -43,12 +43,10 @@ class YahooFinanceViewController: UIViewController {
         }
     }
     
-    func showPopup(title title: String, message: String, completionHandler: (complete: Bool) -> Void) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let cancel = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel) { (alertAction:UIAlertAction) -> Void in
-            completionHandler(complete: true)
-        }
-        alertController.addAction(cancel)
-        self.presentViewController(alertController, animated: true, completion: nil)
+    func showPopup(title: String, message: String, completionHandler: @escaping (_ complete: Bool) -> Void) {
+        
+        Popup.handlerAlert(title: title, message: message, viewController: self) { (complete) in
+            completionHandler(true)
+        }        
     }
 }
