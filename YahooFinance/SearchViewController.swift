@@ -12,15 +12,15 @@ class SearchViewController: YahooFinanceViewController  {
 
     static let identifier = "SearchViewControllerIdentifier"
     @IBOutlet weak var searchBar: UISearchBar!
-    var viewModel: SearchViewModel?
+    var viewModel: SearchViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Search"
-        self.searchBar.delegate = self
-        self.searchBar.placeholder = "Any company name here."
         self.viewModel = self
+        self.navigationItem.title = self.viewModel.getTexts(.title)
+        self.searchBar.delegate = self
+        self.searchBar.placeholder = self.viewModel.getTexts(.placeholder)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,7 +46,10 @@ extension SearchViewController: SearchViewModel {
     }
     
     func searchFail(error: NSError?) {
-        self.showPopup(title: (error?.code != nil ? String(error!.code) : "Sorry"), message: (error != nil ? "Fail to Search Symbol" : "Not Found"), completionHandler: { (complete) in
+        let title = self.viewModel.getTexts(.failDefaultTitle)
+        let failMessage = self.viewModel.getTexts(.failMessage)
+        let failDefaultMessage = self.viewModel.getTexts(.failDefaultMessage)
+        self.showPopup(title: (error?.code != nil ? String(error!.code) : title), message: (error != nil ? failMessage : failDefaultMessage), completionHandler: { (complete) in
             self.searchBar.becomeFirstResponder()
         })
     }
@@ -59,9 +62,7 @@ extension SearchViewController: UISearchBarDelegate {
         self.searchBar.resignFirstResponder()
         
         if let searchBarText = searchBar.text, searchBarText != "" {
-            if (self.viewModel != nil) {
-                self.viewModel!.searchStart(inputString: searchBarText)
-            }
+            self.viewModel.searchStart(inputString: searchBarText)
         }
     }
     

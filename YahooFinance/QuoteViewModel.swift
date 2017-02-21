@@ -16,4 +16,8 @@ protocol QuoteViewModel: YahooFinanceViewModel {
 
 extension QuoteViewModel {
     
+    func getTexts(_ key: QuoteTableViewControllerText) -> String {
+        return key.rawValue
+    }
+    
 }

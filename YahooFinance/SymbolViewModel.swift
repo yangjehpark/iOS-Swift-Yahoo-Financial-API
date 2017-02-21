@@ -20,6 +20,10 @@ protocol SymbolViewModel: YahooFinanceViewModel {
 
 extension SymbolViewModel {
     
+    func getTexts(_ key: SymbolTableViewControllerTexts) -> String {
+        return key.rawValue
+    }
+    
     func queryQuote(_ symbol:String) {
         self.showLoading()
         // Actually, You can put multiple symbols to query to each quotes at once.

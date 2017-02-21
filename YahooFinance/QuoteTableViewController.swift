@@ -15,11 +15,13 @@ class QuoteTableViewController: YahooFinanceViewController {
     // In this sample case, the quotes has only one quote
     var quotes = [Quote]()
     let fixedIndex = 0
+    var viewModel: QuoteViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Quote"
+        self.viewModel = self
+        self.navigationItem.title = self.viewModel.getTexts(.title)
         self.quoteTableView.delegate = self
         self.quoteTableView.dataSource = self
         self.quoteTableView.allowsSelection = false
@@ -27,6 +29,10 @@ class QuoteTableViewController: YahooFinanceViewController {
 
 }
 
+extension QuoteTableViewController: QuoteViewModel {
+
+}
+    
 extension QuoteTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

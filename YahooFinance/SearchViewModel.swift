@@ -20,6 +20,10 @@ protocol SearchViewModel {
 
 extension SearchViewModel {
     
+    func getTexts(_ key: SearchViewControllerTexts) -> String {
+        return key.rawValue
+    }
+    
     func searchStart(inputString: String) {
         self.showLoading()
         

@@ -13,15 +13,15 @@ class SymbolTableViewController: YahooFinanceViewController {
     static let identifier = "SymbolTableViewController"
     @IBOutlet weak var symbolTableView:UITableView!
     var results = [Result]()
-    var viewModel: SymbolViewModel?
+    var viewModel: SymbolViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Symbol"
+        self.viewModel = self
+        self.navigationItem.title = self.viewModel.getTexts(.title)
         self.symbolTableView.delegate = self
         self.symbolTableView.dataSource = self
-        self.viewModel = self
     }
     
 }
@@ -43,7 +43,7 @@ extension SymbolTableViewController: SymbolViewModel {
     }
     
     func queryQuoteFail(error: NSError?) {
-        self.showPopup(title: (error?.code != nil ? String(error!.code) : ""), message: "Fail to Search Quote", completionHandler: { (complete) in
+        self.showPopup(title: (error?.code != nil ? String(error!.code) : ""), message: self.viewModel.getTexts(.failMessage), completionHandler: { (complete) in
         
         })
     }
@@ -54,7 +54,7 @@ extension SymbolTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let symbol = self.results[indexPath.row].symbol {
-            self.viewModel?.queryQuote(symbol)
+            self.viewModel.queryQuote(symbol)
         }
     }
     
