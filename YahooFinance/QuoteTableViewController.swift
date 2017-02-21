@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuoteTableViewController: YahooFinanceViewController, UITableViewDelegate, UITableViewDataSource {
+class QuoteTableViewController: YahooFinanceViewController {
     
     static let identifier = "QuoteTableViewController"
     @IBOutlet weak var quoteTableView:UITableView!
@@ -24,6 +24,23 @@ class QuoteTableViewController: YahooFinanceViewController, UITableViewDelegate,
         self.quoteTableView.dataSource = self
         self.quoteTableView.allowsSelection = false
     }
+
+}
+
+extension QuoteTableViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return QuoteTableViewCell.expectedHeight
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: QuoteTableViewCell.reuseIdentifier, for: indexPath) as! QuoteTableViewCell
+        cell.configure(index: indexPath.row, quote: self.quotes[self.fixedIndex])
+        return cell
+    }
+}
+
+extension QuoteTableViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -32,23 +49,4 @@ class QuoteTableViewController: YahooFinanceViewController, UITableViewDelegate,
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.quotes[fixedIndex].toJSON().count
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return QuoteTableViewCell.expectedHeight
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: QuoteTableViewCell.reuseIdentifier, for: indexPath) as! QuoteTableViewCell
-        cell.valueLabel.text = String(describing: Array(self.quotes[fixedIndex].toJSON().values)[indexPath.row])
-        cell.keyLabel.text = Array(self.quotes[fixedIndex].toJSON().keys)[indexPath.row]
-        return cell
-    }
-}
-
-class QuoteTableViewCell: UITableViewCell {
-    
-    static let reuseIdentifier = "QuoteTableViewCellReuseIdentifier"
-    static let expectedHeight: CGFloat = 60.0
-    @IBOutlet var keyLabel:UILabel!
-    @IBOutlet var valueLabel:UILabel!
 }

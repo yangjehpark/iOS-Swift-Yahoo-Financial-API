@@ -8,10 +8,11 @@
 
 import UIKit
 
-class SearchViewController: YahooFinanceViewController, UISearchBarDelegate, SearchViewModelProtocol {
+class SearchViewController: YahooFinanceViewController  {
 
     static let identifier = "SearchViewControllerIdentifier"
     @IBOutlet weak var searchBar: UISearchBar!
+    var viewModel: SearchViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,26 +20,16 @@ class SearchViewController: YahooFinanceViewController, UISearchBarDelegate, Sea
         self.navigationItem.title = "Search"
         self.searchBar.delegate = self
         self.searchBar.placeholder = "Any company name here."
+        self.viewModel = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.searchBar.becomeFirstResponder()
     }
-    
-    /*
-     MARK: UISearchBarDelegate
-     */
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.searchBar.resignFirstResponder()
-        
-        
-        if let searchBarText = searchBar.text, searchBarText != "" {
-            
-            
-            //self.searchViewModel?.searchStart(inputString: searchBarText)
-        }
-    }
+}
+
+extension SearchViewController: SearchViewModel {
     
     func showLoading() {
         self.showLoadingView()
@@ -48,18 +39,30 @@ class SearchViewController: YahooFinanceViewController, UISearchBarDelegate, Sea
         self.hideLoadingView()
     }
     
-    func searchSuccess(results: [Result]?) {
-        if (results != nil) {
-            let symbolTableViewController = self.mainStoryboard.instantiateViewController(withIdentifier: SymbolTableViewController.identifier) as! SymbolTableViewController
-            symbolTableViewController.results = results!
-            self.navigationController?.pushViewController(symbolTableViewController, animated: true)
-        }
+    func searchSuccess(results: [Result]) {
+        let symbolTableViewController = self.mainStoryboard.instantiateViewController(withIdentifier: SymbolTableViewController.identifier) as! SymbolTableViewController
+        symbolTableViewController.results = results
+        self.navigationController?.pushViewController(symbolTableViewController, animated: true)
     }
     
     func searchFail(error: NSError?) {
         self.showPopup(title: (error?.code != nil ? String(error!.code) : "Sorry"), message: (error != nil ? "Fail to Search Symbol" : "Not Found"), completionHandler: { (complete) in
             self.searchBar.becomeFirstResponder()
         })
+    }
+    
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.resignFirstResponder()
+        
+        if let searchBarText = searchBar.text, searchBarText != "" {
+            if (self.viewModel != nil) {
+                self.viewModel!.searchStart(inputString: searchBarText)
+            }
+        }
     }
     
 }

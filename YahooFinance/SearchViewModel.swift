@@ -10,35 +10,30 @@ import RxCocoa
 import RxDataSources
 import RxSwift
 
-struct SearchViewModel {
-    
-    static func searchStart(model: SearchViewModel, inputString: String) {
-        model.showLoading()
-        
-        SearchParser.getSymbols(inputString) { (searchResults, error) in
-            model.hideLoading()
-            if (searchResults != nil) {
-                if (searchResults!.count != 0) {
-                    model.searchSuccess(results: searchResults!)
-                } else {
-                    model.searchFail(error: error)
-                }
-            } else {
-                model.searchFail(error: error)
-            }
-        }
-    }
-}
-
-protocol SearchViewModelProtocol {
+protocol SearchViewModel {
     
     func showLoading()
     func hideLoading()
-    func searchSuccess(results: [Result]?)
+    func searchSuccess(results: [Result])
     func searchFail(error: NSError?)
-    
 }
 
-extension SearchViewModelProtocol {
-
+extension SearchViewModel {
+    
+    func searchStart(inputString: String) {
+        self.showLoading()
+        
+        SearchParser.getSymbols(inputString) { (searchResults, error) in
+            self.hideLoading()
+            if (searchResults != nil) {
+                if (searchResults!.count != 0) {
+                    self.searchSuccess(results: searchResults!)
+                } else {
+                    self.searchFail(error: error)
+                }
+            } else {
+                self.searchFail(error: error)
+            }
+        }
+    }
 }
