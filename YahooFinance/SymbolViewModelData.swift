@@ -1,5 +1,5 @@
 //
-//  QuoteTableViewControllerData.swift
+//  SymbolViewModelData.swift
 //  YahooFinance
 //
 //  Created by 1000727 on 2017. 2. 21..
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum QuoteTableViewControllerText: String {
-    case title = "Quote"
-    
+enum SymbolViewModelTexts: String {
+    case title = "Symbol"
+    case failMessage = "Fail to Search Quote"
 }

@@ -20,7 +20,7 @@ protocol SymbolViewModel: YahooFinanceViewModel {
 
 extension SymbolViewModel {
     
-    func getTexts(_ key: SymbolTableViewControllerTexts) -> String {
+    func getTexts(_ key: SymbolViewModelTexts) -> String {
         return key.rawValue
     }
     

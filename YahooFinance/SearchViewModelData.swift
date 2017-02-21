@@ -1,5 +1,5 @@
 //
-//  SearchViewControllerData.swift
+//  SearchViewModelData.swift
 //  YahooFinance
 //
 //  Created by 1000727 on 2017. 2. 21..
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SearchViewControllerTexts: String {
+enum SearchViewModelTexts: String {
     case title = "Search"
     case placeholder = "Any company name here."
     
