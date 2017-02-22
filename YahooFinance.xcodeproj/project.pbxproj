@@ -175,7 +175,6 @@
 		C35AE7481E5ACCD300F8E0B7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				C35AE7531E5AD1BF00F8E0B7 /* YahooFinanceViewModel.swift */,
 				C35AE74C1E5ACDB600F8E0B7 /* ViewModels */,
 				C376594F1E2F690000672956 /* Parsers */,
 			);
@@ -214,6 +213,7 @@
 		C35AE74C1E5ACDB600F8E0B7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				C35AE7531E5AD1BF00F8E0B7 /* YahooFinanceViewModel.swift */,
 				C35AE74D1E5ACE8600F8E0B7 /* SearchViewModel.swift */,
 				C35AE74F1E5ACE9100F8E0B7 /* SymbolViewModel.swift */,
 				C35AE7511E5ACEA500F8E0B7 /* QuoteViewModel.swift */,
