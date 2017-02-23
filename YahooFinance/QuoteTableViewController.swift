@@ -12,9 +12,6 @@ class QuoteTableViewController: YahooFinanceViewController {
     
     static let identifier = "QuoteTableViewController"
     @IBOutlet weak var quoteTableView:UITableView!
-    // In this sample case, the quotes has only one quote
-    var quotes = [Quote]()
-    let fixedIndex = 0
     var viewModel: QuoteViewModel!
     
     override func viewDidLoad() {
@@ -40,8 +37,9 @@ extension QuoteTableViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: QuoteTableViewCell.reuseIdentifier, for: indexPath) as! QuoteTableViewCell
-        cell.configure(index: indexPath.row, quote: self.quotes[self.fixedIndex])
+        cell.configure(index: indexPath.row, quote: self.viewModel.quotes[self.viewModel.fixedIndex])
         return cell
     }
 }
@@ -53,6 +51,6 @@ extension QuoteTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.quotes[fixedIndex].toJSON().count
+        return self.viewModel.quotes[self.viewModel.fixedIndex].toJSON().count
     }
 }

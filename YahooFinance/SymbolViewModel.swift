@@ -9,6 +9,7 @@
 import RxCocoa
 import RxDataSources
 import RxSwift
+import ObjectMapper
 
 protocol SymbolViewModel: YahooFinanceViewModel {
     
@@ -19,6 +20,11 @@ protocol SymbolViewModel: YahooFinanceViewModel {
 }
 
 extension SymbolViewModel {
+    
+    var results:[Result] {
+        get { return SymbolViewModelData.sharedData.results }
+        set { SymbolViewModelData.sharedData.results = newValue }
+    }
     
     func getTexts(_ key: SymbolViewModelTexts) -> String {
         return key.rawValue
@@ -37,4 +43,9 @@ extension SymbolViewModel {
             }
         }
     }
+}
+
+class SymbolViewModelData {
+    static let sharedData = SymbolViewModelData()
+    var results = [Result]()
 }

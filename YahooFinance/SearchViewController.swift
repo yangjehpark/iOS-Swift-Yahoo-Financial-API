@@ -40,8 +40,9 @@ extension SearchViewController: SearchViewModel {
     }
     
     func searchSuccess(results: [Result]) {
+        
         let symbolTableViewController = self.mainStoryboard.instantiateViewController(withIdentifier: SymbolTableViewController.identifier) as! SymbolTableViewController
-        symbolTableViewController.results = results
+        SymbolViewModelData.sharedData.results = results
         self.navigationController?.pushViewController(symbolTableViewController, animated: true)
     }
     

@@ -12,7 +12,6 @@ class SymbolTableViewController: YahooFinanceViewController {
     
     static let identifier = "SymbolTableViewController"
     @IBOutlet weak var symbolTableView:UITableView!
-    var results = [Result]()
     var viewModel: SymbolViewModel!
     
     override func viewDidLoad() {
@@ -38,7 +37,7 @@ extension SymbolTableViewController: SymbolViewModel {
     
     func queryQuoteSuccess(quotes: [Quote]) {
         let quoteTableViewController = self.mainStoryboard.instantiateViewController(withIdentifier: QuoteTableViewController.identifier) as! QuoteTableViewController
-        quoteTableViewController.quotes = quotes
+        QuoteViewModelData.sharedData.quotes = quotes
         self.navigationController?.pushViewController(quoteTableViewController, animated: true)
     }
     
@@ -53,7 +52,7 @@ extension SymbolTableViewController: SymbolViewModel {
 extension SymbolTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let symbol = self.results[indexPath.row].symbol {
+        if let symbol = self.viewModel.results[indexPath.row].symbol {
             self.viewModel.queryQuote(symbol)
         }
     }
@@ -64,7 +63,7 @@ extension SymbolTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SymbolTableViewCell.reuseIdentifier, for: indexPath) as! SymbolTableViewCell
-        cell.configure(result: self.results[indexPath.row])
+        cell.configure(result: self.viewModel.results[indexPath.row])
         return cell
     }
 }
@@ -76,6 +75,6 @@ extension SymbolTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.results.count
+        return self.viewModel.results.count
     }
 }
