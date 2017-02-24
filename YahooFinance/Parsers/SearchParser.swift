@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class SearchParser {
+class SearchParser: Parser {
     
     class func getSymbols(_ searchString: String, completionHandler: @escaping (_ searchResults: [Result]?, _ error: NSError?) -> Void)  {
         
@@ -23,7 +23,7 @@ class SearchParser {
         
         let urlString = "https://s.yimg.com/aq/autoc?query=\(queryString)&region=US&lang=en-US"
 
-        Parser.requestAndResponseObject(HTTPMethod.get, urlString: urlString, responseObjectType: responseObjectType) { (responseObject, error) in
+        requestAndResponseObject(HTTPMethod.get, urlString: urlString, responseObjectType: responseObjectType) { (responseObject, error) in
             
             if (responseObject?.resultSet?.results != nil) {
                 completionHandler(responseObject!.resultSet!.results!, nil)

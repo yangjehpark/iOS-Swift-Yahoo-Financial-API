@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class QueryParser {
+class QueryParser: Parser {
     
     class func query(_ symbolTray:[String]?, completionHandler: @escaping (_ quotes:[Quote]?, _ error:NSError?) -> Void) {
         
@@ -20,7 +20,7 @@ class QueryParser {
             
             let responseObjectType = QuoteJSON()
             
-            Parser.requestAndResponseObject(HTTPMethod.get, urlString: urlString, parameters: nil, encoding: URLEncoding.queryString, headers: nil, responseObjectType: responseObjectType) { (responseObject, error) in
+            requestAndResponseObject(HTTPMethod.get, urlString: urlString, parameters: nil, encoding: URLEncoding.queryString, headers: nil, responseObjectType: responseObjectType) { (responseObject, error) in
                 if (responseObject?.query?.results?.quotes != nil) {
                     completionHandler(responseObject!.query!.results!.quotes!, nil)
                 } else {
