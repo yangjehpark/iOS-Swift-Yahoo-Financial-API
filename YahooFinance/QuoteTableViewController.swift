@@ -28,6 +28,10 @@ class QuoteTableViewController: YahooFinanceViewController {
 
 extension QuoteTableViewController: QuoteViewModel {
 
+    func refreshUI() {
+        self.quoteTableView.reloadData()
+    }
+    
 }
     
 extension QuoteTableViewController: UITableViewDelegate {

@@ -27,6 +27,10 @@ class SymbolTableViewController: YahooFinanceViewController {
 
 extension SymbolTableViewController: SymbolViewModel {
     
+    func refreshUI() {
+        self.symbolTableView.reloadData()
+    }
+    
     func showLoading() {
         self.showLoadingView()
     }

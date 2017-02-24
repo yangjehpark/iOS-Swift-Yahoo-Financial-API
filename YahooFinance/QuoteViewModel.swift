@@ -12,6 +12,7 @@ import RxSwift
 
 protocol QuoteViewModel: YahooFinanceViewModel {
     
+    func refreshUI()
 }
 
 extension QuoteViewModel {
@@ -21,8 +22,13 @@ extension QuoteViewModel {
     }
     
     var quotes:[Quote] {
-        get { return QuoteViewModelData.sharedData.quotes }
-        set { QuoteViewModelData.sharedData.quotes = newValue }
+        get {
+            return QuoteViewModelData.sharedData.quotes
+        }
+        set {
+            QuoteViewModelData.sharedData.quotes = newValue
+            self.refreshUI()
+        }
     }
     
     func getTexts(_ key: QuoteViewModelTexts) -> String {
@@ -31,7 +37,7 @@ extension QuoteViewModel {
     
 }
 
-class QuoteViewModelData {
+final class QuoteViewModelData {
     static let sharedData = QuoteViewModelData()
     // In this sample case, the quotes has only one quote
     var quotes = [Quote]()

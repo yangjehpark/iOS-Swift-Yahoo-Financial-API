@@ -13,6 +13,7 @@ import ObjectMapper
 
 protocol SymbolViewModel: YahooFinanceViewModel {
     
+    func refreshUI()
     func showLoading()
     func hideLoading()
     func queryQuoteSuccess(quotes: [Quote])
@@ -22,8 +23,13 @@ protocol SymbolViewModel: YahooFinanceViewModel {
 extension SymbolViewModel {
     
     var results:[Result] {
-        get { return SymbolViewModelData.sharedData.results }
-        set { SymbolViewModelData.sharedData.results = newValue }
+        get {
+            return SymbolViewModelData.sharedData.results
+        }
+        set {
+            SymbolViewModelData.sharedData.results = newValue
+            self.refreshUI()
+        }
     }
     
     func getTexts(_ key: SymbolViewModelTexts) -> String {
@@ -45,7 +51,7 @@ extension SymbolViewModel {
     }
 }
 
-class SymbolViewModelData {
+final class SymbolViewModelData {
     static let sharedData = SymbolViewModelData()
     var results = [Result]()
 }
