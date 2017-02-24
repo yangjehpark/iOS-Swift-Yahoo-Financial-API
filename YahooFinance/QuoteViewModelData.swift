@@ -8,7 +8,13 @@
 
 import Foundation
 
-enum QuoteViewModelTexts: String {
-    case title = "Quote"
-    
+final class QuoteViewModelData {
+    static let sharedData = QuoteViewModelData()
+    // In this sample case, the quotes has only one quote
+    var quotes = [Quote]()
+
+    enum Texts: String {
+        case title = "Quote"
+        
+    }
 }

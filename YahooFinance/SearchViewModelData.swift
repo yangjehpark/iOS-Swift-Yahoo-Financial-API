@@ -8,11 +8,14 @@
 
 import Foundation
 
-enum SearchViewModelTexts: String {
-    case title = "Search"
-    case placeholder = "Any company name here."
+final class SearchViewModelData {
     
-    case failDefaultTitle = "Sorry"
-    case failMessage = "Fail to Search Symbol"
-    case failDefaultMessage = "Not Found"
+    enum Texts: String {
+        case title = "Search"
+        case placeholder = "Any company name here."
+        
+        case failDefaultTitle = "Sorry"
+        case failMessage = "Fail to Search Symbol"
+        case failDefaultMessage = "Not Found"
+    }
 }

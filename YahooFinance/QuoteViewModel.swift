@@ -31,14 +31,8 @@ extension QuoteViewModel {
         }
     }
     
-    func getTexts(_ key: QuoteViewModelTexts) -> String {
+    func getTexts(_ key: QuoteViewModelData.Texts) -> String {
         return key.rawValue
     }
     
-}
-
-final class QuoteViewModelData {
-    static let sharedData = QuoteViewModelData()
-    // In this sample case, the quotes has only one quote
-    var quotes = [Quote]()
 }

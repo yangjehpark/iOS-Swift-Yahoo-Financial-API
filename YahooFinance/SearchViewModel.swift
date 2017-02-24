@@ -20,7 +20,7 @@ protocol SearchViewModel {
 
 extension SearchViewModel {
     
-    func getTexts(_ key: SearchViewModelTexts) -> String {
+    func getTexts(_ key: SearchViewModelData.Texts) -> String {
         return key.rawValue
     }
     

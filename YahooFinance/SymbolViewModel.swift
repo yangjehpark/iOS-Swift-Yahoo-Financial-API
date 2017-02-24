@@ -32,7 +32,7 @@ extension SymbolViewModel {
         }
     }
     
-    func getTexts(_ key: SymbolViewModelTexts) -> String {
+    func getTexts(_ key: SymbolViewModelData.Texts) -> String {
         return key.rawValue
     }
     
@@ -51,7 +51,3 @@ extension SymbolViewModel {
     }
 }
 
-final class SymbolViewModelData {
-    static let sharedData = SymbolViewModelData()
-    var results = [Result]()
-}
