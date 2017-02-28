@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class QuoteTableViewController: YahooFinanceViewController {
     
@@ -19,42 +21,28 @@ class QuoteTableViewController: YahooFinanceViewController {
         
         self.viewModel = self
         self.navigationItem.title = self.viewModel.getTexts(.title)
-        self.quoteTableView.delegate = self
-        self.quoteTableView.dataSource = self
+        
+        self.setQuoteTableView()
+        self.showQuoteTableView()
+    }
+    
+    func setQuoteTableView() {
         self.quoteTableView.allowsSelection = false
     }
 
+    func showQuoteTableView() {
+        let quotes = Variable(self.viewModel.quotes)
+        quotes.asObservable().bindTo(self.quoteTableView.rx.items(cellIdentifier: QuoteTableViewCell.reuseIdentifier, cellType: QuoteTableViewCell.self)) { (row, element, cell) in
+            cell.valueLabel.text = String(describing: Array(element.toJSON().values)[row])
+            cell.keyLabel.text = Array(element.toJSON().keys)[row]
+        }.addDisposableTo(disposeBag)
+    }
 }
 
 extension QuoteTableViewController: QuoteViewModel {
 
     func refreshUI() {
-        self.quoteTableView.reloadData()
-    }
-    
-}
-    
-extension QuoteTableViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return QuoteTableViewCell.expectedHeight
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: QuoteTableViewCell.reuseIdentifier, for: indexPath) as! QuoteTableViewCell
-        cell.configure(index: indexPath.row, quote: self.viewModel.quotes[self.viewModel.fixedIndex])
-        return cell
+        self.showQuoteTableView()
     }
 }
-
-extension QuoteTableViewController: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.quotes[self.viewModel.fixedIndex].toJSON().count
-    }
-}

@@ -41,12 +41,12 @@ extension SymbolViewModel {
         // Actually, You can put multiple symbols to query to each quotes at once.
         // But in this flow, just only one symbol is adjusted.
         QueryParser.query([symbol]) { (quotes, error) in
-            self.hideLoading()
             if (quotes != nil) {
                 self.queryQuoteSuccess(quotes: quotes!)
             } else {
                 self.queryQuoteFail(error: error)
             }
+            self.hideLoading()
         }
     }
 }

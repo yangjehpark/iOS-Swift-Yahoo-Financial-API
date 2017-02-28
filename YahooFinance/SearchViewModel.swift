@@ -28,7 +28,6 @@ extension SearchViewModel {
         self.showLoading()
         
         SearchParser.getSymbols(inputString) { (searchResults, error) in
-            self.hideLoading()
             if (searchResults != nil) {
                 if (searchResults!.count != 0) {
                     self.searchSuccess(results: searchResults!)
@@ -38,6 +37,7 @@ extension SearchViewModel {
             } else {
                 self.searchFail(error: error)
             }
+            self.hideLoading()
         }
     }
 }

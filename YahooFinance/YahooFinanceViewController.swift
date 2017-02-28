@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import RxCocoa
 import RxSwift
 
 class YahooFinanceViewController: UIViewController {
     
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
     var loadingView: UIView?
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()

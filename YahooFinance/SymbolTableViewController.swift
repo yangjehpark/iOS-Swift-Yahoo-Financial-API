@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SymbolTableViewController: YahooFinanceViewController {
     
@@ -19,8 +21,25 @@ class SymbolTableViewController: YahooFinanceViewController {
         
         self.viewModel = self
         self.navigationItem.title = self.viewModel.getTexts(.title)
-        self.symbolTableView.delegate = self
-        self.symbolTableView.dataSource = self
+        
+        self.setSymbolViewModel()
+        self.showSymbolViewModel()
+    }
+    
+    func setSymbolViewModel() {
+        self.symbolTableView.rx.modelSelected(Result.self).subscribe { (event:Event<Result>) in
+            if let symbol = event.element?.symbol {
+                self.viewModel.queryQuote(symbol)
+            }
+        }.addDisposableTo(disposeBag)
+    }
+    
+    func showSymbolViewModel() {
+        let results = Variable(self.viewModel.results)
+        results.asObservable().bindTo(self.symbolTableView.rx.items(cellIdentifier: SymbolTableViewCell.reuseIdentifier, cellType: SymbolTableViewCell.self)) { (row, element, cell) in
+            cell.nameLabel.text = (element.name ?? "")
+            cell.symbolLabel.text = (element.symbol ?? "")
+        }.addDisposableTo(disposeBag)
     }
     
 }
@@ -28,7 +47,7 @@ class SymbolTableViewController: YahooFinanceViewController {
 extension SymbolTableViewController: SymbolViewModel {
     
     func refreshUI() {
-        self.symbolTableView.reloadData()
+        self.showSymbolViewModel()
     }
     
     func showLoading() {
@@ -50,35 +69,11 @@ extension SymbolTableViewController: SymbolViewModel {
         
         })
     }
-
-}
-
-extension SymbolTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let symbol = self.viewModel.results[indexPath.row].symbol {
             self.viewModel.queryQuote(symbol)
         }
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return SymbolTableViewCell.expectedHeight
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SymbolTableViewCell.reuseIdentifier, for: indexPath) as! SymbolTableViewCell
-        cell.configure(result: self.viewModel.results[indexPath.row])
-        return cell
-    }
-}
 
-extension SymbolTableViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.results.count
-    }
 }

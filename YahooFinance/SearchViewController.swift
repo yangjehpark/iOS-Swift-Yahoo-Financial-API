@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SearchViewController: YahooFinanceViewController  {
 
@@ -19,13 +21,27 @@ class SearchViewController: YahooFinanceViewController  {
         
         self.viewModel = self
         self.navigationItem.title = self.viewModel.getTexts(.title)
-        self.searchBar.delegate = self
-        self.searchBar.placeholder = self.viewModel.getTexts(.placeholder)
+        
+        self.setSearchBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.searchBar.becomeFirstResponder()
+    }
+    
+    
+    func setSearchBar() {
+        self.searchBar.delegate = self
+        self.searchBar.placeholder = self.viewModel.getTexts(.placeholder)
+        self.searchBar.rx.searchButtonClicked.bindNext {
+            self.searchBar.resignFirstResponder()
+            Observable.just(self.searchBar.text).filter({
+                ($0 != nil && $0!.trimmingCharacters(in: .whitespaces) != "")
+            }).bindNext({ (string: String?) in
+                self.viewModel.searchStart(inputString: string!)
+            }).addDisposableTo(self.disposeBag)
+        }.addDisposableTo(self.disposeBag)
     }
 }
 
@@ -60,11 +76,6 @@ extension SearchViewController: SearchViewModel {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.searchBar.resignFirstResponder()
         
-        if let searchBarText = searchBar.text, searchBarText != "" {
-            self.viewModel.searchStart(inputString: searchBarText)
-        }
     }
-    
 }
