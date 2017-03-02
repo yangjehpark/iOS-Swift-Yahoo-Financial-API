@@ -9,9 +9,18 @@ A sample iOS application for searching symbol and querying financial quote by us
 
 ## Requirements
 
-- iOS 8.0+
-- Xcode 7.0+
-- Swift 2.3
+- RxSwift-MVVM
+Swift 3.0
+iOS 10.0+
+Xcode 8.0+
+- Swift3
+Swift 3.0
+iOS 8.0+
+Xcode 8.0+
+- Swift2
+Swift 2.3
+iOS 8.0+
+Xcode 7.0+
 
 ## Communication
 
