@@ -16,8 +16,4 @@ class QuoteTableViewCell: UITableViewCell {
     @IBOutlet var keyLabel:UILabel!
     @IBOutlet var valueLabel:UILabel!
     
-    func configure(index: Int, quote: Quote) {
-        self.valueLabel.text = String(describing: Array(quote.toJSON().values)[index])
-        self.keyLabel.text = Array(quote.toJSON().keys)[index]
-    }
 }

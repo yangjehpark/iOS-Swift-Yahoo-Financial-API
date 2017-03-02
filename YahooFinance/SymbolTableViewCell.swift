@@ -15,9 +15,5 @@ class SymbolTableViewCell: UITableViewCell {
     
     @IBOutlet var nameLabel:UILabel!
     @IBOutlet var symbolLabel:UILabel!
-    
-    func configure(result: Result) {
-        self.nameLabel.text = (result.name ?? "")
-        self.symbolLabel.text = (result.symbol ?? "")
-    }
+
 }
