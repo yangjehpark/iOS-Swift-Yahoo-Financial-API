@@ -175,10 +175,6 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Wm9-xU-Cwb" id="D75-Ik-Zi8"/>
-                            <outlet property="delegate" destination="Wm9-xU-Cwb" id="0iL-2U-IqC"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="8Wx-ex-Y3X"/>
                     <connections>

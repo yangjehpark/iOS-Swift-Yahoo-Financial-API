@@ -22,11 +22,11 @@ class SymbolTableViewController: YahooFinanceViewController {
         self.viewModel = self
         self.navigationItem.title = self.viewModel.getTexts(.title)
         
-        self.setSymbolViewModel()
-        self.showSymbolViewModel()
+        self.setSymbolTableView()
+        self.showSymbolTableView()
     }
     
-    func setSymbolViewModel() {
+    func setSymbolTableView() {
         self.symbolTableView.rx.modelSelected(Result.self).subscribe { (event:Event<Result>) in
             if let symbol = event.element?.symbol {
                 self.viewModel.queryQuote(symbol)
@@ -34,7 +34,7 @@ class SymbolTableViewController: YahooFinanceViewController {
         }.addDisposableTo(disposeBag)
     }
     
-    func showSymbolViewModel() {
+    func showSymbolTableView() {
         let results = Variable(self.viewModel.results)
         results.asObservable().bindTo(self.symbolTableView.rx.items(cellIdentifier: SymbolTableViewCell.reuseIdentifier, cellType: SymbolTableViewCell.self)) { (row, element, cell) in
             cell.nameLabel.text = (element.name ?? "")
@@ -47,7 +47,7 @@ class SymbolTableViewController: YahooFinanceViewController {
 extension SymbolTableViewController: SymbolViewModel {
     
     func refreshUI() {
-        self.showSymbolViewModel()
+        self.showSymbolTableView()
     }
     
     func showLoading() {
@@ -68,12 +68,6 @@ extension SymbolTableViewController: SymbolViewModel {
         self.showPopup(title: (error?.code != nil ? String(error!.code) : ""), message: self.viewModel.getTexts(.failMessage), completionHandler: { (complete) in
         
         })
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let symbol = self.viewModel.results[indexPath.row].symbol {
-            self.viewModel.queryQuote(symbol)
-        }
     }
 
 }

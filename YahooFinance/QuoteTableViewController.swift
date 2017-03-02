@@ -28,13 +28,18 @@ class QuoteTableViewController: YahooFinanceViewController {
     
     func setQuoteTableView() {
         self.quoteTableView.allowsSelection = false
+        self.quoteTableView.rowHeight = QuoteTableViewCell.expectedHeight
     }
-
+    
     func showQuoteTableView() {
-        let quotes = Variable(self.viewModel.quotes)
-        quotes.asObservable().bindTo(self.quoteTableView.rx.items(cellIdentifier: QuoteTableViewCell.reuseIdentifier, cellType: QuoteTableViewCell.self)) { (row, element, cell) in
-            cell.valueLabel.text = String(describing: Array(element.toJSON().values)[row])
-            cell.keyLabel.text = Array(element.toJSON().keys)[row]
+        var contents = [(String, Any)]()
+        for content in self.viewModel.quotes[0].toJSON() {
+            contents.append(content)
+        }
+        let quotesContents = Variable(contents)
+        quotesContents.asObservable().bindTo(self.quoteTableView.rx.items(cellIdentifier: QuoteTableViewCell.reuseIdentifier, cellType: QuoteTableViewCell.self)) { (row, element, cell) in
+            cell.keyLabel.text = element.0
+            cell.valueLabel.text = String(describing: element.1)
         }.addDisposableTo(disposeBag)
     }
 }
