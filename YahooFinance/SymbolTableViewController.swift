@@ -35,8 +35,7 @@ class SymbolTableViewController: YahooFinanceViewController {
     }
     
     func showSymbolTableView() {
-        let results = Variable(self.viewModel.results)
-        results.asObservable().bindTo(self.symbolTableView.rx.items(cellIdentifier: SymbolTableViewCell.reuseIdentifier, cellType: SymbolTableViewCell.self)) { (row, element, cell) in
+        Observable.just(self.viewModel.results).bindTo(self.symbolTableView.rx.items(cellIdentifier: SymbolTableViewCell.reuseIdentifier, cellType: SymbolTableViewCell.self)) { (row, element, cell) in
             cell.nameLabel.text = (element.name ?? "")
             cell.symbolLabel.text = (element.symbol ?? "")
         }.addDisposableTo(disposeBag)

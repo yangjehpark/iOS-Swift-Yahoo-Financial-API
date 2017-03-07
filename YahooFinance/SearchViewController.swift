@@ -30,7 +30,6 @@ class SearchViewController: YahooFinanceViewController  {
         self.searchBar.becomeFirstResponder()
     }
     
-    
     func setSearchBar() {
         self.searchBar.delegate = self
         self.searchBar.placeholder = self.viewModel.getTexts(.placeholder)
@@ -56,7 +55,6 @@ extension SearchViewController: SearchViewModel {
     }
     
     func searchSuccess(results: [Result]) {
-        
         let symbolTableViewController = self.mainStoryboard.instantiateViewController(withIdentifier: SymbolTableViewController.identifier) as! SymbolTableViewController
         SymbolViewModelData.sharedData.results = results
         self.navigationController?.pushViewController(symbolTableViewController, animated: true)

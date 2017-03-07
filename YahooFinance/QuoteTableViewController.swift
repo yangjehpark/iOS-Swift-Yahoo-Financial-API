@@ -32,8 +32,7 @@ class QuoteTableViewController: YahooFinanceViewController {
     }
     
     func showQuoteTableView() {
-        let quotesContents = Variable(self.viewModel.quotes[0].toJSON())
-        quotesContents.asObservable().bindTo(self.quoteTableView.rx.items(cellIdentifier: QuoteTableViewCell.reuseIdentifier, cellType: QuoteTableViewCell.self)) { (row, element, cell) in
+        Observable.just(self.viewModel.quotes[0].toJSON()).bindTo(self.quoteTableView.rx.items(cellIdentifier: QuoteTableViewCell.reuseIdentifier, cellType: QuoteTableViewCell.self)) { (row, element, cell) in
             cell.keyLabel.text = element.0
             cell.valueLabel.text = String(describing: element.1)
         }.addDisposableTo(disposeBag)
