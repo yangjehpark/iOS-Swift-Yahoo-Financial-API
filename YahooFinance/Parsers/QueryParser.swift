@@ -16,12 +16,16 @@ class QueryParser: Parser {
         if let symbolsString = QueryParser.symbolTrayToQueryString(symbolTray) {
             
             // The url is start with http, not https. So you must regist 'http://query.yahooapis.com' 'on 'Info.plist' at 'App Transport Security Settings'
-            let urlString = "http://query.yahooapis.com/v1/public/yql?q=env%20%27store://datatables.org/alltableswithkeys%27%3B%20select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(\(symbolsString))%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json"
-            // fixed issue by http://stackoverflow.com/questions/31014168/yql-console-no-definition-found-for-table-yahoo-finance-quotes
+            let urlString = "http://query.yahooapis.com/v1/public/"
+            let format = "json"
+            let env = "http://datatables.org/alltables.env".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed)!
+            let prefixString = "yql?"+"&format="+format+"&env="+env
+            let queryString = "&q=env%20%27store://datatables.org/alltableswithkeys%27%3B%20select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20("+symbolsString+")%0A%09%09"
+            // queryString <- fixed issue by http://stackoverflow.com/questions/31014168/yql-console-no-definition-found-for-table-yahoo-finance-quotes
+            let finalUrlString = urlString+prefixString+queryString
             
             let responseObjectType = QuoteJSON()
-            
-            requestAndResponseObject(HTTPMethod.get, urlString: urlString, parameters: nil, encoding: URLEncoding.queryString, headers: nil, responseObjectType: responseObjectType) { (responseObject, error) in
+            requestAndResponseObject(HTTPMethod.get, urlString: finalUrlString, parameters: nil, encoding: URLEncoding.queryString, headers: nil, responseObjectType: responseObjectType) { (responseObject, error) in
                 if (responseObject?.query?.results?.quotes != nil) {
                     completionHandler(responseObject!.query!.results!.quotes!, nil)
                 } else {
