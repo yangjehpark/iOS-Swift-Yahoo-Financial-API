@@ -45,7 +45,7 @@ class QueryParser: Parser {
         
         if (tray != nil && tray!.count > 0) {
             return tray!.reduce("") { (result:String, string:String) -> String in
-                return (result != "" ? result+","+string : "\""+string+"\"")
+                return (result != "" ? result+","+"\""+string+"\"" : "\""+string+"\"")
             }
         } else {
             return nil
