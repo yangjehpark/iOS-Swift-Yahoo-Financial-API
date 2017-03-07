@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import RxSwift
 
 class QueryParser: Parser {
     
@@ -42,18 +43,12 @@ class QueryParser: Parser {
     
     class fileprivate func symbolTrayToQueryString(_ tray: [String]?) -> String? {
         
-        var symbolsString = ""
-        
         if (tray != nil && tray!.count > 0) {
-            for i in 0..<tray!.count {
-                symbolsString = symbolsString+"\""+tray![i]+"\"" // ex) "AAPL"
-                if (i != tray!.count-1) {
-                    symbolsString = symbolsString+"," // ex) "YHOO","AAPL","GOOG"
-                }
+            return tray!.reduce("") { (result:String, string:String) -> String in
+                return (result != "" ? result+","+string : "\""+string+"\"")
             }
         } else {
             return nil
         }
-        return symbolsString
     }
 }
