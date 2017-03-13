@@ -25,5 +25,5 @@ struct QuoteJSON: Mappable {
     }
     
     var query: QuoteQuery?
-    var error: Error?
+    var error: CommonError?
 }

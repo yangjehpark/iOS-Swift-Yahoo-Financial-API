@@ -1,5 +1,5 @@
 //
-//  CurrencyError.swift
+//  CommonError.swift
 //  Stocker
 //
 //  Created by yangjehpark on 2017. 1. 13..
@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-struct Error: Mappable {
+struct CommonError: Mappable {
     
     init?(map: Map){
         
