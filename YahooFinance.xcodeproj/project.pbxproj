@@ -17,6 +17,7 @@
 		C35AE7501E5ACE9100F8E0B7 /* SymbolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35AE74F1E5ACE9100F8E0B7 /* SymbolViewModel.swift */; };
 		C35AE7521E5ACEA500F8E0B7 /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35AE7511E5ACEA500F8E0B7 /* QuoteViewModel.swift */; };
 		C35AE7541E5AD1BF00F8E0B7 /* YahooFinanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35AE7531E5AD1BF00F8E0B7 /* YahooFinanceViewModel.swift */; };
+		C36E31FD1E7A71280001D845 /* RxAlamofireMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36E31FC1E7A71280001D845 /* RxAlamofireMapper.swift */; };
 		C376591F1E2F511700672956 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C376591E1E2F511700672956 /* AppDelegate.swift */; };
 		C37659211E2F511700672956 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37659201E2F511700672956 /* SearchViewController.swift */; };
 		C37659241E2F511700672956 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C37659221E2F511700672956 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		C35AE74F1E5ACE9100F8E0B7 /* SymbolViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymbolViewModel.swift; sourceTree = "<group>"; };
 		C35AE7511E5ACEA500F8E0B7 /* QuoteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
 		C35AE7531E5AD1BF00F8E0B7 /* YahooFinanceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YahooFinanceViewModel.swift; sourceTree = "<group>"; };
+		C36E31FC1E7A71280001D845 /* RxAlamofireMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxAlamofireMapper.swift; sourceTree = "<group>"; };
 		C376591B1E2F511600672956 /* YahooFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YahooFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C376591E1E2F511700672956 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C37659201E2F511700672956 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				C37659251E2F511700672956 /* Assets.xcassets */,
 				C37659271E2F511700672956 /* LaunchScreen.storyboard */,
 				C37659581E2F6A5C00672956 /* Popup.swift */,
+				C36E31FC1E7A71280001D845 /* RxAlamofireMapper.swift */,
 				C376592A1E2F511700672956 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -452,6 +455,7 @@
 				C37659361E2F5D5800672956 /* YahooFinanceViewController.swift in Sources */,
 				C37659211E2F511700672956 /* SearchViewController.swift in Sources */,
 				C35AE7501E5ACE9100F8E0B7 /* SymbolViewModel.swift in Sources */,
+				C36E31FD1E7A71280001D845 /* RxAlamofireMapper.swift in Sources */,
 				C376594E1E2F671400672956 /* Error.swift in Sources */,
 				C35AE74E1E5ACE8600F8E0B7 /* SearchViewModel.swift in Sources */,
 				C37659491E2F66C000672956 /* ResultSet.swift in Sources */,
