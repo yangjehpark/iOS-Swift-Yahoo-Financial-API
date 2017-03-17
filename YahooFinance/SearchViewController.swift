@@ -31,7 +31,6 @@ class SearchViewController: YahooFinanceViewController  {
     }
     
     func setSearchBar() {
-        self.searchBar.delegate = self
         self.searchBar.placeholder = self.viewModel.getTexts(.placeholder)
         self.searchBar.rx.searchButtonClicked.bindNext {
             self.searchBar.resignFirstResponder()
@@ -69,11 +68,4 @@ extension SearchViewController: SearchViewModel {
         })
     }
     
-}
-
-extension SearchViewController: UISearchBarDelegate {
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-    }
 }
