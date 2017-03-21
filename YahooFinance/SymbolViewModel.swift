@@ -12,7 +12,7 @@ import RxSwift
 import ObjectMapper
 
 protocol SymbolViewModel: YahooFinanceViewModel {
-    
+
     func refreshUI()
     func showLoading()
     func hideLoading()
@@ -22,7 +22,7 @@ protocol SymbolViewModel: YahooFinanceViewModel {
 
 extension SymbolViewModel {
     
-    var results:[Result] {
+    var results: Variable<[Result]> {
         get {
             return SymbolViewModelData.sharedData.results
         }
@@ -42,6 +42,7 @@ extension SymbolViewModel {
         // But in this flow, just only one symbol is adjusted.
         QueryParser.query([symbol]) { (quotes, error) in
             if (quotes != nil) {
+                QuoteViewModelData.sharedData.quotes.value = quotes!
                 self.queryQuoteSuccess(quotes: quotes!)
             } else {
                 self.queryQuoteFail(error: error)

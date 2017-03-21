@@ -35,7 +35,7 @@ class SymbolTableViewController: YahooFinanceViewController {
     }
     
     func showSymbolTableView() {
-        Observable.just(self.viewModel.results).bindTo(self.symbolTableView.rx.items(cellIdentifier: SymbolTableViewCell.reuseIdentifier, cellType: SymbolTableViewCell.self)) { (row, element, cell) in
+        self.viewModel.results.asObservable().bindTo(self.symbolTableView.rx.items(cellIdentifier: SymbolTableViewCell.reuseIdentifier, cellType: SymbolTableViewCell.self)) { (row, element, cell) in
             cell.nameLabel.text = (element.name ?? "")
             cell.symbolLabel.text = (element.symbol ?? "")
         }.addDisposableTo(disposeBag)
@@ -59,7 +59,6 @@ extension SymbolTableViewController: SymbolViewModel {
     
     func queryQuoteSuccess(quotes: [Quote]) {
         let quoteTableViewController = self.mainStoryboard.instantiateViewController(withIdentifier: QuoteTableViewController.identifier) as! QuoteTableViewController
-        QuoteViewModelData.sharedData.quotes = quotes
         self.navigationController?.pushViewController(quoteTableViewController, animated: true)
     }
     

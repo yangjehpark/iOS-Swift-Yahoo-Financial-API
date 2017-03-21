@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import RxSwift
 
 final class QuoteViewModelData {
     static let sharedData = QuoteViewModelData()
     // In this sample case, the quotes has only one quote
-    var quotes = [Quote]()
+    var quotes: Variable<[Quote]> = Variable([Quote]())
 
     enum Texts: String {
         case title = "Quote"

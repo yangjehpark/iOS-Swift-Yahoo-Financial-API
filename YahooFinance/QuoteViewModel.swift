@@ -6,7 +6,7 @@
 //  Copyright © 2017년 yangjehpark. All rights reserved.
 //
 
-import RxCocoa
+import Foundation
 import RxDataSources
 import RxSwift
 
@@ -21,13 +21,19 @@ extension QuoteViewModel {
         get { return 0 }
     }
     
-    var quotes:[Quote] {
+    var quotes: Variable<[Quote]> {
         get {
             return QuoteViewModelData.sharedData.quotes
         }
         set {
             QuoteViewModelData.sharedData.quotes = newValue
             self.refreshUI()
+        }
+    }
+    
+    var quote: Variable<[String:Any]> {
+        get {
+            return Variable(self.quotes.value[0].toJSON())
         }
     }
     

@@ -30,6 +30,7 @@ extension SearchViewModel {
         SearchParser.getSymbols(inputString) { (searchResults, error) in
             if (searchResults != nil) {
                 if (searchResults!.count != 0) {
+                    SymbolViewModelData.sharedData.results.value = searchResults!
                     self.searchSuccess(results: searchResults!)
                 } else {
                     self.searchFail(error: error)

@@ -37,7 +37,9 @@ class SearchViewController: YahooFinanceViewController  {
             Observable.just(self.searchBar.text).filter({
                 ($0 != nil && $0!.trimmingCharacters(in: .whitespaces) != "")
             }).bindNext({ (string: String?) in
-                self.viewModel.searchStart(inputString: string!)
+                if (string != nil) {
+                    self.viewModel.searchStart(inputString: string!)
+                }
             }).addDisposableTo(self.disposeBag)
         }.addDisposableTo(self.disposeBag)
     }
@@ -55,7 +57,6 @@ extension SearchViewController: SearchViewModel {
     
     func searchSuccess(results: [Result]) {
         let symbolTableViewController = self.mainStoryboard.instantiateViewController(withIdentifier: SymbolTableViewController.identifier) as! SymbolTableViewController
-        SymbolViewModelData.sharedData.results = results
         self.navigationController?.pushViewController(symbolTableViewController, animated: true)
     }
     
